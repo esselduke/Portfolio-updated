@@ -38,13 +38,20 @@ document.addEventListener('DOMContentLoaded', function() {
       setTimeout(() => {
         const skillBars = document.querySelectorAll('.skill-bar-animation');
         skillBars.forEach(bar => {
-          const width = bar.className.includes('HTMLLoader') ? '90%' : 
-                      bar.className.includes('cssLoader') ? '90%' : 
-                      bar.className.includes('bootstrapLoader') ? '90%' : 
-                      bar.className.includes('javascriptLoader') ? '85%' : 
-                      bar.className.includes('jQueryLoader') ? '70%' : 
-                      bar.className.includes('nodejsLoader') ? '50%' : '0%';
-          bar.style.width = width;
+          // Set skill bar widths to match the original design
+          if (bar.classList.contains('HTMLLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('cssLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('bootstrapLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('javascriptLoader')) {
+            bar.style.width = '85%';
+          } else if (bar.classList.contains('jQueryLoader')) {
+            bar.style.width = '70%';
+          } else if (bar.classList.contains('nodejsLoader')) {
+            bar.style.width = '50%';
+          }
         });
       }, 500);
     }, 500);
@@ -227,25 +234,51 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Check for screen size to handle responsive elements
+  function checkScreenSize() {
+    const isMobile = window.innerWidth <= 680;
+    const navItems = document.querySelectorAll('.displayNone');
+    
+    navItems.forEach(item => {
+      if (isMobile) {
+        item.style.display = 'none';
+      } else {
+        item.style.display = 'block';
+      }
+    });
+  }
+
+  // Run on page load and whenever the window resizes
+  window.addEventListener('load', checkScreenSize);
+  window.addEventListener('resize', checkScreenSize);
+
   // Side menu toggle
   function toggleMenu() {
     document
       .querySelector(".hamburgerMenuMainContainer")
       .classList.toggle("click");
     document.querySelector(".sideMenu").classList.toggle("sideMenuSlide");
+    
+    // Prevent body scrolling when menu is open
+    if (document.querySelector(".sideMenu").classList.contains("sideMenuSlide")) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
   
   // Make toggle function available globally
   window.toggleMenu = toggleMenu;
-  
   // Side menu vanish on link click
   function sideMenuVan() {
     document.querySelector(".sideMenu").classList.toggle("sideMenuSlide");
     document.querySelector(".hamburgerMenuMainContainer").classList.toggle("click");
+    document.body.style.overflow = 'auto';
   }
   
   // Make sideMenuVan function available globally
   window.sideMenuVan = sideMenuVan;
+
   // Form validation and submission
   const contactForm = document.getElementById('contact-form');
   const successMessage = document.querySelector('.success-message');
@@ -319,12 +352,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll(".square")[0].addEventListener("click", () => {
     window.location.href = "https://github.com/esselduke?tab=repositories";
   });
+
   // Update copyright year automatically
   const yearSpan = document.querySelector('footer p span');
   if (yearSpan) {
     yearSpan.textContent = `©${new Date().getFullYear()}`;
   }
-
   // Add scroll reveal animations to various elements
   const animateElements = document.querySelectorAll('.hex, .projectContentDiv, .contactDiv');
   
@@ -356,4 +389,48 @@ document.addEventListener('DOMContentLoaded', function() {
       img.classList.add('img-loaded');
     }
   });
+
+  // Initialize skill bars with width 0 first
+  const skillBars = document.querySelectorAll('.skill-bar-animation');
+  skillBars.forEach(bar => {
+    bar.style.width = '0';
+  });
+  
+  // Animate skills when they come into view
+  const animateSkills = () => {
+    const skillSection = document.getElementById('skillSection');
+    if (!skillSection) return;
+    
+    const sectionPosition = skillSection.getBoundingClientRect();
+    const screenPosition = window.innerHeight / 1.3;
+    
+    if (sectionPosition.top < screenPosition) {
+      setTimeout(() => {
+        skillBars.forEach(bar => {
+          // Get the original width from CSS class
+          if (bar.classList.contains('HTMLLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('cssLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('bootstrapLoader')) {
+            bar.style.width = '90%';
+          } else if (bar.classList.contains('javascriptLoader')) {
+            bar.style.width = '85%';
+          } else if (bar.classList.contains('jQueryLoader')) {
+            bar.style.width = '70%';
+          } else if (bar.classList.contains('nodejsLoader')) {
+            bar.style.width = '50%';
+          }
+        });
+      }, 500);
+      
+      // Remove scroll listener once animated
+      window.removeEventListener('scroll', animateSkills);
+    }
+  };
+  
+  // Add scroll listener for skill animations
+  window.addEventListener('scroll', animateSkills);
+  // Check once on load too
+  animateSkills();
 });
