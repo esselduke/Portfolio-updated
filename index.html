@@ -8,7 +8,7 @@
     <title>Duke Essel - Portfolio</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <script
-      src="https://kit.fontawesome.com/839fff91aa.js"
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="style.css" />
@@ -81,13 +81,17 @@
             <a class="a" href="#contactSection">CONTACT</a>
           </li>
           <li class="removeFromIpadView displayNone">
-            <a class="resumeLinkColor a" href="#topSection">RESUME</a>
+            <a class="resumeLinkColor a" id="resumeLink" href="#downloadSection">RESUME</a>
           </li>
           <li class="removeFromIpadView displayNone">
-            <i class="linkedinLogo fa-brands fa-linkedin fa-2x"></i>
+            <a href="https://www.linkedin.com/in/david-duke-essel" target="_blank">
+              <i class="linkedinLogo fa-brands fa-linkedin fa-2x"></i>
+            </a>
           </li>
           <li class="removeFromIpadView displayNone">
-            <i class="gitLogo fa-brands fa-github fa-2x"></i>
+            <a href="https://github.com/esselduke?tab=repositories" target="_blank">
+              <i class="gitLogo fa-brands fa-github fa-2x"></i>
+            </a>
           </li>
         </ul>
       </nav>
@@ -111,10 +115,10 @@
             </p>
           </div>
 
-          <div class="secondIntroParagraphContainer" data-aos="fade-left" data-aos-duration="1000">
+          <div class="secondIntroParagraphContainer" data-aos="fade-left" data-aos-duration="1000" id="downloadSection">
             <div class="buttonOuterContainer">
-              <i class="animatedArrowForDownloadBtn fa-sharp fa-solid fa-arrow-down fa-2x"></i>
-              <a href="file/resume.pdf" download="Resume">
+              <i class="animatedArrowForDownloadBtn fa-sharp fa-solid fa-arrow-down fa-2x" id="downloadArrow"></i>
+              <a href="file/resume.pdf" download="Resume" id="downloadResumeBtn">
                 <div class="button shadow">DOWNLOAD RESUME</div>
               </a>
             </div>
@@ -122,7 +126,9 @@
         </div>
 
         <div class="fontAwsomeContainer">
-          <a href="#portfolioSection"><i class="fa-solid fa-angles-down fa-2x"></i></a>
+          <a href="#skillSection">
+            <i class="fa-solid fa-angles-down fa-2x" style="animation: floatAnimation 1.5s ease-in-out infinite;"></i>
+          </a>
         </div>
         <div class="toTheTopBtnContainer">
           <i class="fa-solid fa-angles-up fa-2x"></i>
@@ -179,51 +185,57 @@
         <div class="skillPercenages">
           <!-- LOADERS -->
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
-            <div class="HTMLLoader skill-bar-animation">
+            <div class="skill-bar HTMLLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-html5"></i>
                 <p>HTML</p>
               </div>
+              <div class="progress-percent">90%</div>
             </div>
           </div>
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
-            <div class="cssLoader skill-bar-animation">
+            <div class="skill-bar cssLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-css3-alt"></i>
                 <p>CSS</p>
               </div>
+              <div class="progress-percent">90%</div>
             </div>
           </div>
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
-            <div class="javascriptLoader skill-bar-animation">
+            <div class="skill-bar javascriptLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-square-js"></i>
                 <p>JavaScript</p>
               </div>
+              <div class="progress-percent">85%</div>
             </div>
           </div>
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="400">
-            <div class="jQueryLoader skill-bar-animation">
+            <div class="skill-bar jQueryLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-css3"></i>
                 <p>jQuery</p>
               </div>
+              <div class="progress-percent">70%</div>
             </div>
           </div>
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="500">
-            <div class="bootstrapLoader skill-bar-animation">
+            <div class="skill-bar bootstrapLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-bootstrap"></i>
                 <p>Bootstrap</p>
               </div>
+              <div class="progress-percent">90%</div>
             </div>
           </div>
           <div class="entireWidth" data-aos="fade-right" data-aos-duration="800" data-aos-delay="600">
-            <div class="nodejsLoader skill-bar-animation">
+            <div class="skill-bar nodejsLoader skill-bar-animation">
               <div class="innerLoader">
                 <i class="fw fa-brands fa-node"></i>
                 <p>Node.js</p>
               </div>
+              <div class="progress-percent">50%</div>
             </div>
           </div>
         </div>
@@ -249,14 +261,14 @@
             </div>
           </div>
           <p>
-            I created this page using my layout and organization skills.
+            I created this page using my layout and organization skills, focusing on clean, intuitive user interfaces.
           </p>
           <div class="techList">
             <span class="tech-tag">HTML</span>
             <span class="tech-tag">CSS</span>
             <span class="tech-tag">JavaScript</span>
           </div>
-          <div class="btnLive">
+          <div class="btnLive" data-href="https://esselduke.github.io/Lessek-initial-/">
             <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
           </div>
         </div>
@@ -273,14 +285,14 @@
             </div>
           </div>
           <p>
-            A website for tracking shipment, viewing services of company and show content of account by loging in. 
+            A professional website for tracking shipments, viewing company services, and managing account information with user authentication.
           </p>
           <div class="techList">
             <span class="tech-tag">HTML</span>
             <span class="tech-tag">CSS</span>
             <span class="tech-tag">JavaScript</span>
           </div>
-          <div class="btnLive">
+          <div class="btnLive" data-href="https://esselduke.github.io/Delivery/">
             <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
           </div>
         </div>
@@ -297,16 +309,23 @@
             </div>
           </div>
           <p>
-            I used HTML and CSS to reproduce the interface of the anti-cyber website.
+            I used HTML and CSS to reproduce the interface of the anti-cyber website, maintaining pixel-perfect fidelity to the original design.
           </p>
           <div class="techList">
             <span class="tech-tag">HTML</span>
             <span class="tech-tag">CSS</span>
           </div>
-          <div class="btnLive">
+          <div class="btnLive" data-href="https://esselduke.github.io/Ant-Cyber-/">
             <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
           </div>
         </div>
+      </div>
+      
+      <div class="view-more-container">
+        <a href="portfolio.html" class="view-more-btn">
+          <span>View More Projects</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
       </div>
     </section>
     <!-- Contact Section -->
@@ -348,20 +367,20 @@
     <!-- Footer -->
     <footer>
       <div class="footerIcons">
-        <div class="square" data-tilt>
+        <a href="https://github.com/esselduke?tab=repositories" target="_blank" class="square" data-tilt>
           <i class="animateUp fa-brands fa-github"></i>
-        </div>
-        <div class="square" data-tilt>
+        </a>
+        <a href="https://www.linkedin.com/in/david-duke-essel" target="_blank" class="square" data-tilt>
           <i class="animateUp fa-brands fa-linkedin"></i>
-        </div>
-        <div class="square" data-tilt>
+        </a>
+        <a href="https://www.instagram.com/dukeessel_/" target="_blank" class="square" data-tilt>
           <i class="animateUp fa-brands fa-instagram"></i>
-        </div>
-        <div class="square" data-tilt>
+        </a>
+        <a href="https://twitter.com/DukeEssel_" target="_blank" class="square" data-tilt>
           <i class="animateUp fa-brands fa-twitter"></i>
-        </div>
+        </a>
       </div>
-      <p>DUKE ESSEL, COPYRIGHT <span>&copy;2025</span></p>
+      <p>DUKE ESSEL <span>&copy;<span id="currentYear">2025</span></span></p>
     </footer>
 
     <!-- Scripts -->
@@ -371,5 +390,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="index.js"></script>
+
+    <!-- <script>
+      // Force arrow animation
+      document.addEventListener('DOMContentLoaded', function() {
+        const downArrow = document.querySelector('.fontAwsomeContainer i');
+        if (downArrow) {
+          downArrow.style.animation = 'floatAnimation 1.5s ease-in-out infinite';
+        }
+      });
+    </script> -->
+
   </body>
 </html>
