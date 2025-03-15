@@ -391,15 +391,47 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="index.js"></script>
 
-    <!-- <script>
-      // Force arrow animation
+    <script>
+      // Fix for hamburger menu transform across all sections
       document.addEventListener('DOMContentLoaded', function() {
-        const downArrow = document.querySelector('.fontAwsomeContainer i');
-        if (downArrow) {
-          downArrow.style.animation = 'floatAnimation 1.5s ease-in-out infinite';
+        // Define the toggle function that will be used for all hamburger buttons
+        function globalToggleMenu() {
+          // Reset the window.toggleMenu function to work consistently
+          window.toggleMenu = function() {
+            // Get all hamburger buttons
+            const allHamburgerButtons = document.querySelectorAll('.hamburgerMenuMainContainer');
+            
+            // Toggle the 'click' class on all hamburger buttons
+            allHamburgerButtons.forEach(btn => {
+              btn.classList.toggle('click');
+            });
+            
+            // Toggle the side menu
+            document.querySelector('.sideMenu').classList.toggle('sideMenuSlide');
+            
+            // Toggle body scrolling
+            if (document.querySelector('.sideMenu').classList.contains('sideMenuSlide')) {
+              document.body.style.overflow = 'hidden';
+            } else {
+              document.body.style.overflow = 'auto';
+            }
+          };
+          
+          // Immediately call the new function to apply changes
+          window.toggleMenu();
         }
+        
+        // Add event listeners to all hamburger buttons directly
+        const allHamburgerButtons = document.querySelectorAll('.hamburgerMenuMainContainer');
+        allHamburgerButtons.forEach(btn => {
+          // Remove any existing click listeners
+          btn.removeAttribute('onclick');
+          
+          // Add our new event listener
+          btn.addEventListener('click', globalToggleMenu);
+        });
       });
-    </script> -->
+    </script>
 
   </body>
 </html>
