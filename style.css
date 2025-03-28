@@ -1260,6 +1260,7 @@ nav span {
 .projectsMainDivGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 2, 1fr;
   gap: 30px;
   text-align: center;
   margin: auto;
