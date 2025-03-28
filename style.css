@@ -1268,10 +1268,11 @@ nav span {
 }
 
 .projectContentDiv {
-  background-color: white;
+  /* background-color: white; */
   padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background-color: #f5f5f5;
+  /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   z-index: 1;
