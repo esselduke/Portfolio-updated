@@ -17,23 +17,13 @@
   </head>
 
   <body>
-    <!-- Preloader -->
-    <div class="preloader">
-      <div class="loader">
-        <span class="letter">D</span>
-        <span class="letter">U</span>
-        <span class="letter">K</span>
-        <span class="letter">E</span>
-      </div>
-    </div>
-
     <!-- Cursor -->
     <div class="cursor-dot-outline"></div>
     <div class="cursor-dot"></div>
 
     <!-- Side Menu -->
     <div class="sideMenu" id="sidebar">
-      <div class="hamburgerMenuMainContainer slideHamburger slideHamburgerMargin" onclick="toggleMenu()">
+      <div class="hamburgerMenuMainContainer slideHamburger slideHamburgerMargin" id="menuCloseBtn">
         <div>
           <div class="bar firsBar"></div>
           <div class="bar secondBar"></div>
@@ -42,10 +32,10 @@
       </div>
 
       <ul>
-        <li><a onclick="sideMenuVan()" class="aa" href="#topSection">ABOUT</a></li>
-        <li><a onclick="sideMenuVan()" class="aa" href="#skillSection">SKILL</a></li>
-        <li><a onclick="sideMenuVan()" class="aa" href="#portfolioSection">PORTFOLIO</a></li>
-        <li><a onclick="sideMenuVan()" class="aa" href="#contactSection">CONTACT</a></li>
+        <li><a class="aa" href="#topSection" data-nav>ABOUT</a></li>
+        <li><a class="aa" href="#skillSection" data-nav>SKILL</a></li>
+        <li><a class="aa" href="#portfolioSection" data-nav>PORTFOLIO</a></li>
+        <li><a class="aa" href="#contactSection" data-nav>CONTACT</a></li>
       </ul>
     </div>
 
@@ -59,7 +49,7 @@
           </li>
           <!-- HAMBURGER ICON -->
           <li>
-            <div class="hamburgerMenuMainContainer" onclick="toggleMenu()">
+            <div class="hamburgerMenuMainContainer" id="menuOpenBtn">
               <div>
                 <div class="bar firsBar"></div>
                 <div class="bar secondBar"></div>
@@ -69,16 +59,16 @@
           </li>
           <!-- END OF HAMBURGER -->
           <li class="displayNone">
-            <a class="a" href="#topSection">ABOUT</a>
+            <a class="a" href="#topSection" data-nav>ABOUT</a>
           </li>
           <li class="displayNone">
-            <a class="a" href="#skillSection">SKILL</a>
+            <a class="a" href="#skillSection" data-nav>SKILL</a>
           </li>
           <li class="displayNone">
-            <a class="a" href="#portfolioSection">PORTFOLIO</a>
+            <a class="a" href="#portfolioSection" data-nav>PORTFOLIO</a>
           </li>
           <li class="displayNone">
-            <a class="a" href="#contactSection">CONTACT</a>
+            <a class="a" href="#contactSection" data-nav>CONTACT</a>
           </li>
           <li class="removeFromIpadView displayNone">
             <a class="resumeLinkColor a" id="resumeLink" href="#downloadSection">RESUME</a>
@@ -251,7 +241,7 @@
         <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
           <h3>LCS (initial)</h3>
           <div class="project-img-container">
-            <img class="img shadow" src="images/img/lessek.png" alt="LCS Project" />
+            <img class="img shadow" src="images/screencapture-kateproject-netlify-app-2025-03-28-03_54_02.png" alt="LCS Project" />
             <div class="project-overlay">
               <div class="project-details">
                 <h4>Layout & Organization</h4>
@@ -275,7 +265,7 @@
         <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
           <h3>MKD SHIPPING</h3>
           <div class="project-img-container">
-            <img class="img shadow" src="images/img/shipping.png" alt="MKD Shipping Project" />
+            <img class="img shadow" src="images/screencapture-sallysalonwebsite-netlify-app-2025-03-28-04_50_21.png" alt="MKD Shipping Project" />
             <div class="project-overlay">
               <div class="project-details">
                 <h4>Shipment Tracking System</h4>
@@ -299,7 +289,7 @@
         <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
           <h3>Ant Cyber Site</h3>
           <div class="project-img-container">
-            <img class="img shadow" src="images/img/antcyb.png" alt="Ant Cyber Site Project" />
+            <img class="img shadow" src="images/screencapture-travist-travel-netlify-app-2025-03-28-05_19_34.png" alt="Ant Cyber Site Project" />
             <div class="project-overlay">
               <div class="project-details">
                 <h4>Cybersecurity Interface</h4>
@@ -313,12 +303,90 @@
           <div class="techList">
             <span class="tech-tag">HTML</span>
             <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">REACT</span>
           </div>
           <div class="btnLive" data-href="https://esselduke.github.io/Ant-Cyber-/">
             <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
           </div>
         </div>
       </div>
+      
+      <div class="projectsMainDivGrid">
+        <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+          <h3>LCS (initial)</h3>
+          <div class="project-img-container">
+            <img class="img shadow" src="images/screencapture-kateproject-netlify-app-2025-03-28-03_54_02.png" alt="LCS Project" />
+            <div class="project-overlay">
+              <div class="project-details">
+                <h4>Layout & Organization</h4>
+                <p>A demonstration of my design skills</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            I created this page using my layout and organization skills, focusing on clean, intuitive user interfaces.
+          </p>
+          <div class="techList">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="btnLive" data-href="https://esselduke.github.io/Lessek-initial-/">
+            <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
+          </div>
+        </div>
+        
+        <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+          <h3>MKD SHIPPING</h3>
+          <div class="project-img-container">
+            <img class="img shadow" src="images/screencapture-sallysalonwebsite-netlify-app-2025-03-28-04_50_21.png" alt="MKD Shipping Project" />
+            <div class="project-overlay">
+              <div class="project-details">
+                <h4>Shipment Tracking System</h4>
+                <p>Full-featured logistics platform</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            A professional website for tracking shipments, viewing company services, and managing account information with user authentication.
+          </p>
+          <div class="techList">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+          <div class="btnLive" data-href="https://esselduke.github.io/Delivery/">
+            <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
+          </div>
+        </div>
+        
+        <div class="projectContentDiv" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="300">
+          <h3>Ant Cyber Site</h3>
+          <div class="project-img-container">
+            <img class="img shadow" src="images/screencapture-travist-travel-netlify-app-2025-03-28-05_19_34.png" alt="Ant Cyber Site Project" />
+            <div class="project-overlay">
+              <div class="project-details">
+                <h4>Cybersecurity Interface</h4>
+                <p>Faithful reproduction of a complex UI</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            I used HTML and CSS to reproduce the interface of the anti-cyber website, maintaining pixel-perfect fidelity to the original design.
+          </p>
+          <div class="techList">
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">REACT</span>
+          </div>
+          <div class="btnLive" data-href="https://esselduke.github.io/Ant-Cyber-/">
+            <i class="faw fa-solid fa-magnifying-glass"></i>LIVE
+          </div>
+        </div>
+      </div>
+
       
       <div class="view-more-container">
         <a href="portfolio.html" class="view-more-btn">
@@ -389,48 +457,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="index.js"></script>
-
-    <script>
-      // Fix for hamburger menu transform across all sections
-      document.addEventListener('DOMContentLoaded', function() {
-        // Define the toggle function that will be used for all hamburger buttons
-        function globalToggleMenu() {
-          // Reset the window.toggleMenu function to work consistently
-          window.toggleMenu = function() {
-            // Get all hamburger buttons
-            const allHamburgerButtons = document.querySelectorAll('.hamburgerMenuMainContainer');
-            
-            // Toggle the 'click' class on all hamburger buttons
-            allHamburgerButtons.forEach(btn => {
-              btn.classList.toggle('click');
-            });
-            
-            // Toggle the side menu
-            document.querySelector('.sideMenu').classList.toggle('sideMenuSlide');
-            
-            // Toggle body scrolling
-            if (document.querySelector('.sideMenu').classList.contains('sideMenuSlide')) {
-              document.body.style.overflow = 'hidden';
-            } else {
-              document.body.style.overflow = 'auto';
-            }
-          };
-          
-          // Immediately call the new function to apply changes
-          window.toggleMenu();
-        }
-        
-        // Add event listeners to all hamburger buttons directly
-        const allHamburgerButtons = document.querySelectorAll('.hamburgerMenuMainContainer');
-        allHamburgerButtons.forEach(btn => {
-          // Remove any existing click listeners
-          btn.removeAttribute('onclick');
-          
-          // Add our new event listener
-          btn.addEventListener('click', globalToggleMenu);
-        });
-      });
-    </script>
-
   </body>
 </html>

@@ -51,48 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 3000);
     });
   }
-
-// Preloader Animation - fixed version
-function handlePreloader() {
-  const preloader = document.querySelector('.preloader');
-  if (preloader) {
-    setTimeout(() => {
-      preloader.style.opacity = '0';
-      setTimeout(() => {
-        preloader.style.display = 'none';
-        
-        // Animate skill bars after preloader is gone
-        setTimeout(() => {
-          animateSkillBars();
-        }, 500);
-      }, 500);
-    }, 100);
-  }
-}
-
-// Function to animate skill bars
-function animateSkillBars() {
-  const skillBars = document.querySelectorAll('.skill-bar-animation');
-  skillBars.forEach(bar => {
-    // Set skill bar widths
-    if (bar.classList.contains('HTMLLoader')) {
-      bar.style.width = '90%';
-    } else if (bar.classList.contains('cssLoader')) {
-      bar.style.width = '90%';
-    } else if (bar.classList.contains('bootstrapLoader')) {
-      bar.style.width = '90%';
-    } else if (bar.classList.contains('javascriptLoader')) {
-      bar.style.width = '85%';
-    } else if (bar.classList.contains('jQueryLoader')) {
-      bar.style.width = '70%';
-    } else if (bar.classList.contains('nodejsLoader')) {
-      bar.style.width = '50%';
-    }
-  });
-}
-
-// Call this function as soon as possible
-handlePreloader();
   
   // Particles.js initialization for background effect
   particlesJS('particles-js', {
@@ -266,7 +224,6 @@ handlePreloader();
       
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
         
         if (scrollY >= (sectionTop - 200)) {
           current = section.getAttribute('id');
@@ -282,27 +239,58 @@ handlePreloader();
     });
   }
 
-  // Side menu toggle
-  window.toggleMenu = function() {
-    document
-      .querySelector(".hamburgerMenuMainContainer")
-      .classList.toggle("click");
-    document.querySelector(".sideMenu").classList.toggle("sideMenuSlide");
+  // Mobile menu toggle
+  const menuOpenBtn = document.getElementById('menuOpenBtn');
+  const menuCloseBtn = document.getElementById('menuCloseBtn');
+  const sideMenu = document.querySelector('.sideMenu');
+  
+  // Simple toggle menu function
+  function toggleSideMenu() {
+    // Toggle the hamburger icon
+    if (menuOpenBtn) menuOpenBtn.classList.toggle('click');
+    if (menuCloseBtn) menuCloseBtn.classList.toggle('click');
     
-    // Prevent body scrolling when menu is open
-    if (document.querySelector(".sideMenu").classList.contains("sideMenuSlide")) {
+    // Toggle the side menu
+    if (sideMenu) sideMenu.classList.toggle('sideMenuSlide');
+    
+    // Toggle body scrolling
+    if (sideMenu && sideMenu.classList.contains('sideMenuSlide')) {
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
-  };
+  }
   
-  // Side menu vanish on link click
-  window.sideMenuVan = function() {
-    document.querySelector(".sideMenu").classList.toggle("sideMenuSlide");
-    document.querySelector(".hamburgerMenuMainContainer").classList.toggle("click");
-    document.body.style.overflow = 'auto';
-  };
+  // Add click event to menu buttons
+  if (menuOpenBtn) {
+    menuOpenBtn.addEventListener('click', toggleSideMenu);
+  }
+  
+  if (menuCloseBtn) {
+    menuCloseBtn.addEventListener('click', toggleSideMenu);
+  }
+  
+  // Handle navigation links
+  const navMenuLinks = document.querySelectorAll('[data-nav]');
+  
+  navMenuLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      // If side menu is open, close it
+      if (sideMenu && sideMenu.classList.contains('sideMenuSlide')) {
+        toggleSideMenu();
+      }
+      
+      // Get target section
+      const targetId = this.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      
+      // Smooth scroll to section
+      if (targetSection) {
+        e.preventDefault();
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
 
   // Form validation and submission
   const contactForm = document.getElementById('contact-form');
@@ -359,6 +347,25 @@ handlePreloader();
   }
 
   // Animate skills when they come into view
+  function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-bar');
+    skillBars.forEach(bar => {
+      if (bar.classList.contains('HTMLLoader')) {
+        bar.style.width = '90%';
+      } else if (bar.classList.contains('cssLoader')) {
+        bar.style.width = '90%';
+      } else if (bar.classList.contains('bootstrapLoader')) {
+        bar.style.width = '90%';
+      } else if (bar.classList.contains('javascriptLoader')) {
+        bar.style.width = '85%';
+      } else if (bar.classList.contains('jQueryLoader')) {
+        bar.style.width = '70%';
+      } else if (bar.classList.contains('nodejsLoader')) {
+        bar.style.width = '50%';
+      }
+    });
+  }
+  
   function checkSkillsVisibility() {
     const skillSection = document.getElementById('skillSection');
     if (!skillSection) return;
@@ -368,143 +375,23 @@ handlePreloader();
     
     if (sectionPosition.top < screenPosition) {
       animateSkillBars();
-      // Remove scroll listener once animated
       window.removeEventListener('scroll', checkSkillsVisibility);
     }
   }
   
-  // Add scroll listener for skill animations
   window.addEventListener('scroll', checkSkillsVisibility);
-  // Check once on load too
-  checkSkillsVisibility();
   
-  // Add pulse animation class for buttons
-  document.querySelectorAll('.button').forEach(button => {
-    button.addEventListener('mouseenter', function() {
-      this.classList.add('pulse-active');
-    });
-    
-    button.addEventListener('mouseleave', function() {
-      this.classList.remove('pulse-active');
-    });
-  });
-  
-  // Add loading animation for images
-  const projectImages = document.querySelectorAll('.img');
-  
-  projectImages.forEach(img => {
-    // Create and add loading overlay
-    const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'image-loading-overlay';
-    img.parentNode.appendChild(loadingOverlay);
-    
-    img.addEventListener('load', function() {
-      // Remove loading overlay when image is loaded
-      loadingOverlay.style.opacity = '0';
-      setTimeout(() => {
-        if (loadingOverlay.parentNode) {
-          loadingOverlay.parentNode.removeChild(loadingOverlay);
-        }
-      }, 300);
-      this.classList.add('img-loaded');
-    });
-    
-    // For already loaded images
-    if (img.complete) {
-      if (loadingOverlay.parentNode) {
-        loadingOverlay.parentNode.removeChild(loadingOverlay);
-      }
-      img.classList.add('img-loaded');
-    }
-  });
-  
-  // Reset skill bars to zero width first
-  const skillBars = document.querySelectorAll('.skill-bar-animation');
+  // Initialize skill bars
+  const skillBars = document.querySelectorAll('.skill-bar');
   skillBars.forEach(bar => {
     bar.style.width = '0';
   });
   
-  // Enhanced hover effects for project cards
-  document.querySelectorAll('.projectContentDiv').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.classList.add('card-focus');
-      // Add slight movement to neighboring cards
-      const siblings = Array.from(this.parentNode.children).filter(elem => elem !== this);
-      siblings.forEach(sibling => {
-        sibling.classList.add('card-neighbor');
-      });
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.classList.remove('card-focus');
-      // Remove movement from neighboring cards
-      const siblings = Array.from(this.parentNode.children);
-      siblings.forEach(sibling => {
-        sibling.classList.remove('card-neighbor');
-      });
-    });
-  });
+  // Check visibility on load
+  setTimeout(checkSkillsVisibility, 500);
   
-  // Parallax effect for particles.js background
-  if (document.getElementById('particles-js')) {
-    window.addEventListener('mousemove', function(e) {
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-      
-      const particles = document.getElementById('particles-js');
-      particles.style.transform = `translate(${moveX}px, ${moveY}px)`;
-    });
-  }
-  
-  // Dynamic text color change for skill section headers
-  document.querySelectorAll('.skillContent h2').forEach(header => {
-    const originalColor = getComputedStyle(header).color;
-    
-    header.addEventListener('mouseenter', function() {
-      this.style.color = getComputedStyle(document.documentElement).getPropertyValue('--accent-color');
-    });
-    
-    header.addEventListener('mouseleave', function() {
-      this.style.color = originalColor;
-    });
-  });
-  
-  // Improved navigation interaction for mobile
-  const navItems = document.querySelectorAll('.a, .aa');
-  navItems.forEach(item => {
-    item.addEventListener('click', function() {
-      // Close mobile menu if open
-      if (document.querySelector('.sideMenu').classList.contains('sideMenuSlide')) {
-        window.sideMenuVan();
-      }
-      
-      // Smooth scroll to the section
-      const targetId = this.getAttribute('href');
-      const targetSection = document.querySelector(targetId);
-      
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    });
-  });
-  
-  // Check for browser support and add appropriate classes
-  const browserChecks = () => {
-    const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-    
-    if (isFirefox) {
-      document.body.classList.add('firefox');
-    } else if (isSafari) {
-      document.body.classList.add('safari');
-    }
-  };
-  
-  browserChecks();
-  
-  // Initialize skill bars with default state
+  // Initialize percentage displays
   document.querySelectorAll('.skill-bar').forEach(bar => {
-    // Get the percentage from the width class
     const percentClass = Array.from(bar.classList)
       .find(className => className.includes('Loader'));
       
@@ -528,22 +415,38 @@ handlePreloader();
     }
   });
   
-  // Add subtle animation to the main title
-  const aboutHeading = document.querySelector('.bigAboutText h1');
-  if (aboutHeading) {
-    aboutHeading.addEventListener('mouseenter', function() {
-      this.style.animationDuration = '0.5s';
-      this.style.animationTimingFunction = 'ease';
+  // Enhanced project card hover effects
+  document.querySelectorAll('.projectContentDiv').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      this.classList.add('card-focus');
+      const siblings = Array.from(this.parentNode.children).filter(elem => elem !== this);
+      siblings.forEach(sibling => {
+        sibling.classList.add('card-neighbor');
+      });
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      this.classList.remove('card-focus');
+      const siblings = Array.from(this.parentNode.children);
+      siblings.forEach(sibling => {
+        sibling.classList.remove('card-neighbor');
+      });
+    });
+  });
+  
+  // Disable parallax effect on mobile
+  if (document.getElementById('particles-js') && window.innerWidth > 768) {
+    window.addEventListener('mousemove', function(e) {
+      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
       
-      setTimeout(() => {
-        this.style.animationDuration = '1s';
-        this.style.animationTimingFunction = 'linear alternate-reverse';
-      }, 500);
+      const particles = document.getElementById('particles-js');
+      particles.style.transform = `translate(${moveX}px, ${moveY}px)`;
     });
   }
 });
 
-// Add CSS style for pulse animation dynamically
+// Add CSS for animations
 const style = document.createElement('style');
 style.textContent = `
   .pulse-animation {
@@ -557,25 +460,6 @@ style.textContent = `
   .card-neighbor {
     transform: scale(0.98) translateY(-5px);
     opacity: 0.8;
-  }
-  
-  .image-loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s infinite;
-    z-index: 1;
-    transition: opacity 0.3s ease;
-    border-radius: 10px;
-  }
-  
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
   }
   
   @keyframes buttonPulse {

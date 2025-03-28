@@ -17,6 +17,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overscroll-behavior-x: none; /* Prevent horizontal overscroll effects */
 }
 
 * {
@@ -28,44 +29,10 @@ html {
 
 body {
   overflow-x: hidden;
-}
-
-/* ===== PRELOADER ===== */
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  background: var(--primary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: var(--transition);
-}
-
-.loader {
-  display: flex;
-}
-
-.letter {
-  color: var(--accent-color);
-  font-size: 4rem;
-  font-weight: bold;
-  letter-spacing: 10px;
-  margin: 0 5px;
-  animation: bounce 0.6s ease-in-out infinite alternate;
-}
-
-.letter:nth-child(1) { animation-delay: 0.1s; }
-.letter:nth-child(2) { animation-delay: 0.2s; }
-.letter:nth-child(3) { animation-delay: 0.3s; }
-.letter:nth-child(4) { animation-delay: 0.4s; }
-
-@keyframes bounce {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-20px); }
+  overscroll-behavior-x: none; /* Additional safeguard for horizontal scrolling */
+  touch-action: pan-y; /* Only allow vertical scrolling on touch devices */
 }
 
 /* ===== CUSTOM CURSOR ===== */
@@ -102,6 +69,8 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
+  overflow: hidden; /* Prevent particles from causing scroll */
+  pointer-events: none; /* Prevent particles from intercepting touch events */
 }
 
 /* ===== TOP SECTION ===== */
@@ -112,6 +81,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 nav {
@@ -873,6 +843,7 @@ nav span {
   z-index: 100;
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 }
 
 .hamburgerMenuMainContainer > div {
@@ -1050,6 +1021,14 @@ nav span {
   margin: 30px 0;
   transition: background-color 0.3s ease;
 }
+
+/* background-color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  transition: background-color 0.3s ease;
+} */
 
 .hexStraight:before,
 .hexStraight:after {
@@ -1337,34 +1316,42 @@ nav span {
   border-radius: 10px;
   margin-bottom: 20px;
   aspect-ratio: 16/9;
-}
-.img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  transition: transform 0.5s ease;
-  object-fit: cover;
   width: 100%;
-  height: 100%;
+  height: 300px;
 }
 
-.projectContentDiv:hover .img {
+.project-img-container .img {
+  width: 100%;
+  height: auto; /* Change to auto */
+  max-height: none; /* Remove any max-height restrictions */
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+  transition: transform 5s ease-in-out;
+}
+
+.project-img-container:hover .img {
+  transform: translateY(calc(-100% + 300px));
+}
+
+/* .projectContentDiv:hover .img {
   transform: scale(1.05);
-}
+  
+} */
 
-.project-overlay {
+/* .project-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(36, 67, 90, 0.85), rgba(36, 90, 86, 0.85));
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-}
+  pointer-events: none;
+} */
 
 .projectContentDiv:hover .project-overlay {
   opacity: 1;
@@ -1801,6 +1788,7 @@ footer span {
   .projectsMainDivGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
+    /* margin-bottom: 50px; */
   }
 }
 
